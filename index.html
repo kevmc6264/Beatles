@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>&lt;model-viewer&gt; Example - The Beatles 3D</title>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Explore a 3D model of The Beatles statue in AR and interactive mode."
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="demo-styles.css" />
+
+    <!-- Focus-visible polyfill -->
+    <script
+      src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <div id="card">
+      <!-- 3D Model Viewer -->
+      <model-viewer
+        src="https://cdn.glitch.me/eb024dfa-95f7-40e2-a23d-92449e9bc57b/the_beatles_statue.glb?v=1703505443629"
+        ios-src="https://cdn.glitch.me/eb024dfa-95f7-40e2-a23d-92449e9bc57b/The_Beatles_Statue.usdz?v=1703505460690"
+        poster="https://cdn.glitch.global/eb024dfa-95f7-40e2-a23d-92449e9bc57b/poster.webp?v=1703505444761"
+        alt="The Beatles"
+        shadow-intensity="1"
+        camera-controls
+        auto-rotate
+        ar
+      >
+        <!-- Hotspot button inside model-viewer -->
+        <button
+          class="Hotspot"
+          onclick="hotspotClicked(this)"
+          slot="hotspot-2"
+          data-surface="1 0 15861 15859 15860 0.146 0.471 0.384"
+          data-visibility-attribute="visible"
+        >
+          <div class="HotspotAnnotation">
+            <strong>The Fab 4</strong><br />
+            revolutionised music and pop culture, leaving a legacy that
+            continues to inspire generations. From iconic albums to
+            unforgettable performances, their impact is timeless.
+          </div>
+        </button>
+      </model-viewer>
+
+      <!-- Attribution -->
+      <section class="attribution">
+        <h1>The Beatles</h1>
+        <a
+          class="cc"
+          href="https://sketchfab.com/3d-models/the-beatles-statue-bdc43f7883454cd7a2f9a40c080c81eb"
+          target="_blank"
+        >
+          <img
+            src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
+            alt="Creative Commons License"
+            loading="lazy"
+          />
+        </a>
+      </section>
+    </div>
+
+    <!-- Model-Viewer Script -->
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+  </body>
+</html>
