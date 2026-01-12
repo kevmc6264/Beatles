@@ -74,26 +74,7 @@ model-viewer:active {
 /* =========================================
    Attribution
 ========================================= */
-.attribution {
-  text-align: center;
-  margin: 0.75rem 0;
-}
 
-.attribution h1 {
-  margin: 0.25rem 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.attribution img {
-  height: 1.6rem;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
-}
-
-.attribution img:hover {
-  opacity: 1;
-}
 
 /* =========================================
    Mobile tweaks
