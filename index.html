@@ -1,69 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>&lt;model-viewer&gt; example</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="utf-8" />
+  <title>The Beatles – 3D Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Interactive 3D model of The Beatles statue." />
 
-    <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles.css" />
 
-    <!-- Focus-visible polyfill -->
-    <script
-      src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js"
-      defer
-    ></script>
-  </head>
+  <!-- Optional but helpful -->
+  <script src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
 
-  <body>
+  <!-- model-viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+</head>
 
-    <div id="card">
+<body>
+  <main class="page">
+    <header class="title-block">
+      <h1>The Beatles</h1>
+      <p>Drag to rotate • Scroll to zoom • Tap AR on Android</p>
+    </header>
 
-      <model-viewer
-        src="your-model.glb"
-        alt="3D model"
+    <model-viewer
+      id="mv"
+      src="https://pub-c133242e36144d14be3d01d2b0f26964.r2.dev/the_beatles_statue.glb"
+      alt="The Beatles statue 3D model"
+      camera-controls
+      touch-action="pan-y"
+      interaction-prompt="auto"
+      shadow-intensity="1"
+      tone-mapping="neutral"
+      exposure="1"
+      environment-image="neutral"
+      auto-rotate
+      auto-rotate-delay="0"
 
-        camera-controls
-        auto-rotate
-        interaction-prompt="auto"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      camera-orbit="180deg 75deg auto"
+      field-of-view="30deg"
+      min-camera-orbit="auto 10deg auto"
+      max-camera-orbit="auto 85deg auto"
+    >
+      <!-- Hotspot (adjust data-position if needed) -->
+      <button class="Hotspot" slot="hotspot-1" data-position="0m 1.6m 0.4m" data-normal="0m 0m 1m">
+        <div class="HotspotAnnotation">
+          <strong>The Fab Four</strong><br />
+          Revolutionised music and pop culture, leaving a legacy that continues to inspire generations.
+        </div>
+      </button>
 
-        camera-orbit="180deg 75deg 3m"
-        field-of-view="30deg"
+      <!-- Custom AR button -->
+      <button slot="ar-button" id="ar-button">View in your space</button>
 
-        ar
-        ar-modes="webxr scene-viewer quick-look"
+      <!-- Simple fallback text -->
+      <div class="fallback" slot="poster">
+        Loading 3D model…
+      </div>
+    </model-viewer>
 
-        shadow-intensity="1">
-
-        <!-- Hotspot 1 -->
-        <button
-          class="Hotspot"
-          slot="hotspot-1"
-          data-position="0m 1.6m 0.4m">
-          <div class="HotspotAnnotation">Hotspot text</div>
-        </button>
-
-      </model-viewer>
-
-      <section class="attribution">
-        <h1>Model Title</h1>
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener">
-          <img
-            src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
-            alt="Creative Commons">
-        </a>
-      </section>
-
+    <div class="note" id="ios-note" hidden>
+      iPhone/iPad needs a <strong>.usdz</strong> file for AR (Quick Look). 3D viewing still works in-browser.
     </div>
 
-    <!-- model-viewer -->
-    <script
-      type="module"
-      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
-    </script>
+    <footer class="attribution">
+    
+    </footer>
+  </main>
 
-  </body>
+  <script>
+    // iOS AR behaviour:
+    // If you don't provide ios-src (.usdz), iOS will not launch AR and may offer download instead.
+    // We hide the AR button on iOS unless you add a .usdz later.
+    (function () {
+      const mv = document.getElementById("mv");
+      const iosNote = document.getElementById("ios-note");
+
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+      if (isIOS && !mv.getAttribute("ios-src")) {
+        // Hide AR button on iOS when no USDZ is provided
+        mv.setAttribute("ar", ""); // keep attribute, but button will be hidden by script below
+        const arBtn = mv.querySelector("#ar-button");
+        if (arBtn) arBtn.style.display = "none";
+        iosNote.hidden = false;
+      }
+    })();
+  </script>
+</body>
 </html>
