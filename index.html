@@ -19,49 +19,45 @@
 
 <body>
 
-  <div id="card">
+  <model-viewer
+    src="https://pub-c133242e36144d14be3d01d2b0f26964.r2.dev/the_beatles_statue.glb"
+    poster="poster.webp"
+    alt="The Beatles statue 3D model"
 
-    <model-viewer
-      src="https://pub-c133242e36144d14be3d01d2b0f26964.r2.dev/the_beatles_statue.glb"
-      poster="poster.webp"
-      alt="The Beatles statue 3D model"
+    camera-controls
+    auto-rotate
+    interaction-prompt="auto"
 
-      camera-controls
-      auto-rotate
-      interaction-prompt="auto"
+    ar
+    ar-modes="webxr scene-viewer"
 
-      ar
-      ar-modes="webxr scene-viewer"
+    shadow-intensity="1">
 
-      shadow-intensity="1">
+    <!-- Hotspot -->
+    <button
+      class="Hotspot"
+      slot="hotspot-1"
+      data-position="0m 1.6m 0.4m">
+      <div class="HotspotAnnotation">
+        <strong>The Fab Four</strong><br>
+        Revolutionised music and pop culture, leaving a legacy that continues
+        to inspire generations.
+      </div>
+    </button>
 
-      <!-- Hotspot -->
-      <button
-        class="Hotspot"
-        slot="hotspot-1"
-        data-position="0m 1.6m 0.4m">
-        <div class="HotspotAnnotation">
-          <strong>The Fab Four</strong><br>
-          Revolutionised music and pop culture, leaving a legacy that continues
-          to inspire generations.
-        </div>
-      </button>
+  </model-viewer>
 
-    </model-viewer>
-
-    <section class="attribution">
-      <h1>The Beatles</h1>
-      <a
-        href="https://sketchfab.com/3d-models/the-beatles-statue-bdc43f7883454cd7a2f9a40c080c81eb"
-        target="_blank"
-        rel="noopener">
-        <img
-          src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
-          alt="Creative Commons">
-      </a>
-    </section>
-
-  </div>
+  <section class="attribution">
+    <h1>The Beatles</h1>
+    <a
+      href="https://sketchfab.com/3d-models/the-beatles-statue-bdc43f7883454cd7a2f9a40c080c81eb"
+      target="_blank"
+      rel="noopener">
+      <img
+        src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
+        alt="Creative Commons">
+    </a>
+  </section>
 
 </body>
 </html>
