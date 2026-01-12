@@ -1,110 +1,176 @@
-/* =========================================
-   Global reset
-========================================= */
-* {
-  box-sizing: border-box;
-}
-
-html,
+/* ============================
+   Global Styles
+============================ */
 body {
-  margin: 0;
+  margin: 1em;
   padding: 0;
-  width: 100%;
-  height: 100%;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-               Roboto, Helvetica, Arial, sans-serif;
-  background: transparent;
-  color: #56585e;
+  font-family: "Roboto", "Noto Sans", Helvetica Neue, sans-serif;
+  color: #56585e; /* Updated text color */
+  background-color: transparent; /* No background */
+  line-height: 1.6;
+  text-align: center;
 }
 
-/* =========================================
-   Model Viewer
-========================================= */
+/* ============================
+   Card Container (Reduced Width)
+============================ */
+#card {
+  margin: 2em auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px; /* Reduced width */
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  padding: 1.2em;
+  background-color: transparent; /* No background */
+}
+
+/* ============================
+   Model Viewer (Adjusted Width)
+============================ */
 model-viewer {
   width: 100%;
-  height: 80vh;
-  background-color: transparent;
+  height: 500px; /* Adjusted to match new card width */
+  background-color: transparent; /* Removed white background */
   --poster-color: transparent;
-
-  cursor: grab;
-  touch-action: pan-y;
-}
-
-model-viewer:active {
-  cursor: grabbing;
-}
-
-/* =========================================
-   Hotspots
-========================================= */
-.Hotspot {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 3px solid #66ccff;
-  box-shadow: 0 0 10px rgba(102, 204, 255, 0.8);
-  cursor: pointer;
-  padding: 0;
-}
-
-.HotspotAnnotation {
-  position: absolute;
-  left: 130%;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #ffffff;
-  padding: 0.5rem 0.75rem;
   border-radius: 6px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-  font-size: 0.85rem;
-  max-width: 240px;
-  line-height: 1.4;
+}
 
+/* ============================
+   Hotspot Styling
+============================ */
+.Hotspot {
+  background: #ffffff;
+  border-radius: 50%;
+  border: 3px solid rgba(102, 204, 255, 0.9);
+  box-shadow: 0 0 10px rgba(102, 204, 255, 0.7);
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  padding: 6px;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hotspot Hover Effect */
+.Hotspot:hover {
+  box-shadow: 0 0 15px rgba(102, 204, 255, 1);
+  transform: scale(1.1);
+}
+
+/* ============================
+   Hotspot Annotations (Tooltip)
+============================ */
+.HotspotAnnotation {
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  color: #56585e; /* Updated text color */
+  font-family: Futura, Helvetica Neue, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 10px);
+  width: max-content;
+  max-width: 180px;
   opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
+  transform: translateY(-50%);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  display: block;
+  visibility: hidden;
   z-index: 10;
 }
 
+/* Show Annotation on Hover */
 .Hotspot:hover .HotspotAnnotation {
   opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) scale(1.05);
 }
 
-/* =========================================
-   Attribution
-========================================= */
+/* ============================
+   Attribution Section (Fixed Spacing & Updated Color)
+============================ */
 .attribution {
-  text-align: center;
-  margin: 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  gap: 5px;
 }
 
 .attribution h1 {
-  margin: 0.25rem 0;
-  font-size: 1.25rem;
-  font-weight: 600;
+  margin: 0;
+  font-size: 1.4em; /* Slightly smaller */
+  font-weight: 700;
+  color: #56585e; /* Updated text color */
 }
 
 .attribution img {
-  height: 1.6rem;
   opacity: 0.7;
-  transition: opacity 0.2s ease;
+  height: 1.8em; /* Adjusted size */
+  transition: opacity 0.3s ease-in-out;
+  filter: grayscale(100%) brightness(40%); /* Makes CC icon match color */
 }
 
 .attribution img:hover {
   opacity: 1;
+  filter: grayscale(0%) brightness(100%);
 }
 
-/* =========================================
-   Mobile tweaks
-========================================= */
+/* ============================
+   Footer (Fixed Spacing & Updated Color)
+============================ */
+footer {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px; /* Match new card width */
+  margin: auto;
+  text-align: center;
+  font-style: normal;
+  line-height: 1.5em;
+  padding: 1em;
+  border-top: 1px solid #dddddd;
+  margin-top: 1em;
+  color: #56585e; /* Updated text color */
+}
+
+/* Footer Text */
+footer p {
+  margin: 0.5em 0;
+  color: #56585e; /* Updated text color */
+}
+
+/* ============================
+   Responsive Design Tweaks
+============================ */
 @media (max-width: 768px) {
+  #card {
+    max-width: 90%; /* Makes it fit smaller screens */
+    padding: 1em;
+  }
+
   model-viewer {
-    height: 65vh;
+    height: 450px;
+  }
+
+  .Hotspot {
+    width: 20px;
+    height: 20px;
+    padding: 4px;
   }
 
   .HotspotAnnotation {
-    max-width: 200px;
-    font-size: 0.8rem;
+    font-size: 12px;
+    max-width: 160px;
+  }
+
+  .attribution h1 {
+    font-size: 1.2em;
   }
 }
