@@ -1,41 +1,38 @@
 /* ============================
    Global Styles
 ============================ */
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
-  margin: 1em;
+  margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
   font-family: "Roboto", "Noto Sans", Helvetica Neue, sans-serif;
-  color: #56585e; /* Updated text color */
-  background-color: transparent; /* No background */
+  color: #56585e;
+  background-color: transparent;
   line-height: 1.6;
   text-align: center;
 }
 
 /* ============================
-   Card Container (Reduced Width)
-============================ */
-#card {
-  margin: 2em auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 500px; /* Reduced width */
-  height: auto;
-  border-radius: 6px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
-  padding: 1.2em;
-  background-color: transparent; /* No background */
-}
-
-/* ============================
-   Model Viewer (Adjusted Width)
+   Model Viewer
 ============================ */
 model-viewer {
   width: 100%;
-  height: 500px; /* Adjusted to match new card width */
-  background-color: transparent; /* Removed white background */
+  height: 80vh;
+  background-color: transparent;
   --poster-color: transparent;
-  border-radius: 6px;
+
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+model-viewer:active {
+  cursor: grabbing;
 }
 
 /* ============================
@@ -46,29 +43,27 @@ model-viewer {
   border-radius: 50%;
   border: 3px solid rgba(102, 204, 255, 0.9);
   box-shadow: 0 0 10px rgba(102, 204, 255, 0.7);
-  box-sizing: border-box;
-  cursor: pointer;
   width: 24px;
   height: 24px;
-  padding: 6px;
+  padding: 0;
+  cursor: pointer;
   position: relative;
   transition: all 0.3s ease-in-out;
 }
 
-/* Hotspot Hover Effect */
 .Hotspot:hover {
   box-shadow: 0 0 15px rgba(102, 204, 255, 1);
   transform: scale(1.1);
 }
 
 /* ============================
-   Hotspot Annotations (Tooltip)
+   Hotspot Annotation
 ============================ */
 .HotspotAnnotation {
   background: #ffffff;
   border-radius: 6px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-  color: #56585e; /* Updated text color */
+  color: #56585e;
   font-family: Futura, Helvetica Neue, sans-serif;
   font-size: 14px;
   font-weight: 600;
@@ -77,16 +72,14 @@ model-viewer {
   top: 50%;
   left: calc(100% + 10px);
   width: max-content;
-  max-width: 180px;
+  max-width: 220px;
   opacity: 0;
   transform: translateY(-50%);
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-  display: block;
   visibility: hidden;
   z-index: 10;
 }
 
-/* Show Annotation on Hover */
 .Hotspot:hover .HotspotAnnotation {
   opacity: 1;
   visibility: visible;
@@ -94,28 +87,28 @@ model-viewer {
 }
 
 /* ============================
-   Attribution Section (Fixed Spacing & Updated Color)
+   Attribution (CC icon matches Tokyo)
 ============================ */
 .attribution {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 0.75rem;
   gap: 5px;
 }
 
 .attribution h1 {
   margin: 0;
-  font-size: 1.4em; /* Slightly smaller */
+  font-size: 1.4em;
   font-weight: 700;
-  color: #56585e; /* Updated text color */
+  color: #56585e;
 }
 
 .attribution img {
+  height: 1.8em;
   opacity: 0.7;
-  height: 1.8em; /* Adjusted size */
   transition: opacity 0.3s ease-in-out;
-  filter: grayscale(100%) brightness(40%); /* Makes CC icon match color */
+  filter: grayscale(100%) brightness(40%);
 }
 
 .attribution img:hover {
@@ -124,50 +117,21 @@ model-viewer {
 }
 
 /* ============================
-   Footer (Fixed Spacing & Updated Color)
-============================ */
-footer {
-  display: flex;
-  flex-direction: column;
-  max-width: 500px; /* Match new card width */
-  margin: auto;
-  text-align: center;
-  font-style: normal;
-  line-height: 1.5em;
-  padding: 1em;
-  border-top: 1px solid #dddddd;
-  margin-top: 1em;
-  color: #56585e; /* Updated text color */
-}
-
-/* Footer Text */
-footer p {
-  margin: 0.5em 0;
-  color: #56585e; /* Updated text color */
-}
-
-/* ============================
-   Responsive Design Tweaks
+   Responsive Tweaks
 ============================ */
 @media (max-width: 768px) {
-  #card {
-    max-width: 90%; /* Makes it fit smaller screens */
-    padding: 1em;
-  }
-
   model-viewer {
-    height: 450px;
+    height: 65vh;
   }
 
   .Hotspot {
     width: 20px;
     height: 20px;
-    padding: 4px;
   }
 
   .HotspotAnnotation {
     font-size: 12px;
-    max-width: 160px;
+    max-width: 180px;
   }
 
   .attribution h1 {
